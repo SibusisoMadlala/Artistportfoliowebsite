@@ -26,7 +26,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img src="/public/image.png" alt="Zama Magubane Logo" className="h-8 w-8 rounded-full" />
+            <img src="/image.png" alt="Zama Magubane Logo" className="h-8 w-8 rounded-full" />
             <span className="text-2xl font-light tracking-wider text-stone-900">
               ZAMA MAGUBANE
             </span>

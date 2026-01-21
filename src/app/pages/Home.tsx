@@ -17,7 +17,7 @@ export function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('public/Screenshot 2026-01-21 121422.png')` }}
+          style={{ backgroundImage: `url('/Screenshot 2026-01-21 121422.png')` }}
         />
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 text-center px-4">
