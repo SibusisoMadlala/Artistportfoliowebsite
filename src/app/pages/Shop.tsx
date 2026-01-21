@@ -1,9 +1,46 @@
 import { motion } from 'motion/react';
 import { ShoppingCart } from 'lucide-react';
-import { artworks } from '@/app/data/artworks';
+// import { artworks } from '@/app/data/artworks';
+
+interface Product {
+  id: string;
+  title: string;
+  collection: string;
+  price: string;
+  imageUrl: string;
+  available: boolean;
+}
+
+const mugs: Product[] = [
+  {
+    id: 'm1',
+    title: 'Ancestral Echoes Mug',
+    collection: 'Ceramic Collection',
+    price: 'R 250',
+    imageUrl: 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?q=80&w=800&auto=format&fit=crop', // Placeholder mug image
+    available: true
+  },
+  {
+    id: 'm2',
+    title: 'Future Visions Mug',
+    collection: 'Ceramic Collection',
+    price: 'R 250',
+    imageUrl: 'https://images.unsplash.com/photo-1577937927133-66ef06acdf18?q=80&w=800&auto=format&fit=crop',
+    available: true
+  },
+  {
+    id: 'm3',
+    title: 'Spirit Pathways Mug',
+    collection: 'Ceramic Collection',
+    price: 'R 250',
+    imageUrl: 'https://images.unsplash.com/photo-1536939459926-301728717817?q=80&w=800&auto=format&fit=crop',
+    available: true
+  }
+];
 
 export function Shop() {
-  const availableWorks = artworks.filter((a) => a.available);
+  // const availableWorks = artworks.filter((a) => a.available);
+  const availableWorks = mugs;
 
   return (
     <div className="min-h-screen pt-32 pb-24 bg-white">
@@ -40,11 +77,11 @@ export function Shop() {
 
         {/* Available Works */}
         <div className="mb-16">
-          <h2 className="text-3xl font-light text-stone-900 mb-8">Original Works</h2>
+          <h2 className="text-3xl font-light text-stone-900 mb-8">Artisan Mugs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {availableWorks.map((artwork, index) => (
+            {availableWorks.map((product, index) => (
               <motion.div
-                key={artwork.id}
+                key={product.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -52,24 +89,22 @@ export function Shop() {
               >
                 <div className="aspect-[3/4] overflow-hidden bg-stone-100 mb-4">
                   <img
-                    src={artwork.imageUrl}
-                    alt={artwork.title}
+                    src={product.imageUrl}
+                    alt={product.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-light text-stone-900">{artwork.title}</h3>
-                  <p className="text-sm text-stone-500">{artwork.collection}</p>
-                  <p className="text-sm text-stone-600">
-                    {artwork.year} • {artwork.medium}
-                  </p>
-                  <p className="text-sm text-stone-600">{artwork.dimensions}</p>
-                  {artwork.price && (
-                    <p className="text-lg font-medium text-stone-900 mt-3">{artwork.price}</p>
+                  <h3 className="text-xl font-light text-stone-900">{product.title}</h3>
+                  <p className="text-sm text-stone-500">{product.collection}</p>
+                  
+                  
+                  {product.price && (
+                    <p className="text-lg font-medium text-stone-900 mt-3">{product.price}</p>
                   )}
                   <button className="w-full mt-4 px-6 py-3 bg-stone-900 text-white hover:bg-stone-800 transition-colors flex items-center justify-center gap-2">
                     <ShoppingCart className="w-4 h-4" />
-                    Inquire
+                    Buy Now
                   </button>
                 </div>
               </motion.div>

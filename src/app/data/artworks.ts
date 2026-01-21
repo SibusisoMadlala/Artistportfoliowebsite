@@ -20,7 +20,7 @@ export const artworks: Artwork[] = [
     dimensions: '150 x 120 cm',
     collection: 'UVALO ALUSEKHO',
     description: 'A profound exploration of inherited memories and cultural consciousness, this piece weaves together traditional motifs with contemporary expression.',
-    imageUrl: '/Screenshot 2026-01-21 111020.png',
+    imageUrl: '/ancestral-echoes.jpg',
     available: true,
     price: 'R 45,000'
   },
