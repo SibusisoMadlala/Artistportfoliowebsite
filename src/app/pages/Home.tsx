@@ -16,14 +16,16 @@ export function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="absolute inset-0 bg-gradient-to-br from-stone-100 to-amber-50"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url('public/Screenshot 2026-01-21 121422.png')` }}
         />
+        <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 text-center px-4">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-6xl md:text-8xl font-light tracking-wider text-stone-900 mb-6"
+            className="text-6xl md:text-8xl font-light tracking-wider text-white mb-6"
           >
             ZAMA MAGUBANE
           </motion.h1>
@@ -31,7 +33,7 @@ export function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-stone-600 font-light max-w-3xl mx-auto mb-12"
+            className="text-xl md:text-2xl text-white font-light max-w-3xl mx-auto mb-12"
           >
             Contemporary artist weaving African heritage, spirituality, and Afro-futurism into transformative visual narratives
           </motion.p>

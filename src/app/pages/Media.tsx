@@ -77,7 +77,11 @@ export function Media() {
         <div>
           <h2 className="text-3xl font-light text-stone-900 mb-8">Videos & Films</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {['Behind the Scenes: UVALO ALUSEKHO', 'Studio Visit', 'Artist Talk at Zeitz MOCAA'].map((title, index) => (
+            {[
+              { title: 'Behind the Scenes: UVALO ALUSEKHO', src: '/videos/Recording 2026-01-21 114331.mp4' },
+              { title: 'Studio Visit', src: '/videos/Recording 2026-01-21 115417.mp4' },
+              { title: 'Artist Talk at Zeitz MOCAA', src: '/videos/Recording 2026-01-21 115519.mp4' }
+            ].map((video, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -86,10 +90,15 @@ export function Media() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group cursor-pointer"
               >
-                <div className="aspect-video bg-stone-100 mb-4 flex items-center justify-center group-hover:bg-stone-200 transition-colors">
-                  <Play className="w-12 h-12 text-stone-400 group-hover:text-stone-600 transition-colors" />
-                </div>
-                <h3 className="text-lg font-light text-stone-900">{title}</h3>
+                <video
+                  className="aspect-video w-full mb-4 object-cover"
+                  controls
+                  muted
+                  src={video.src}
+                >
+                  Your browser does not support the video tag.
+                </video>
+                <h3 className="text-lg font-light text-stone-900">{video.title}</h3>
               </motion.div>
             ))}
           </div>
