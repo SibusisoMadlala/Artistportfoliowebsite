@@ -24,7 +24,7 @@ export function About() {
           <div className="space-y-12">
             <div className="aspect-[16/9] bg-stone-100 overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1745174837801-b7f37abe9d2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJvZnV0dXJpc20lMjBwb3J0cmFpdHxlbnwxfHx8fDE3Njg5ODQ0NDJ8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                src="/Screenshot 2026-01-21 114050.png"
                 alt="Zama Magubane"
                 className="w-full h-full object-cover"
               />

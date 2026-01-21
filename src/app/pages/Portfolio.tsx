@@ -144,9 +144,9 @@ export function Portfolio() {
                 <p className="text-sm text-stone-600">
                   {artwork.year} • {artwork.medium}
                 </p>
-                {artwork.available && artwork.price && (
+                {/* {artwork.available && artwork.price && (
                   <p className="text-sm text-stone-900 font-medium">{artwork.price}</p>
-                )}
+                )} */}
               </div>
             </motion.div>
           ))}
