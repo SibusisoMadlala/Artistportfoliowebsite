@@ -11,10 +11,9 @@ export function Navbar() {
     { path: '/', label: 'Home' },
     { path: '/portfolio', label: 'Portfolio' },
     { path: '/about', label: 'About' },
+    { path: '/collaborations', label: 'Collaborations' },
     { path: '/exhibitions', label: 'Exhibitions' },
     { path: '/shop', label: 'Shop' },
-    { path: '/media', label: 'Media' },
-    { path: '/journal', label: 'Journal' },
     { path: '/contact', label: 'Contact' }
   ];
 
@@ -26,7 +25,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img src="/image.png" alt="Zama Magubane Logo" className="h-8 w-8 rounded-full" />
+            <img src="/logo.png" alt="Zama Magubane Logo" className="h-8 w-8 rounded-full" />
             <span className="text-2xl font-light tracking-wider text-stone-900">
               ZAMA MAGUBANE
             </span>

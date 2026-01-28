@@ -1,46 +1,9 @@
 import { motion } from 'motion/react';
-import { ShoppingCart } from 'lucide-react';
-// import { artworks } from '@/app/data/artworks';
-
-interface Product {
-  id: string;
-  title: string;
-  collection: string;
-  price: string;
-  imageUrl: string;
-  available: boolean;
-}
-
-const mugs: Product[] = [
-  {
-    id: 'm1',
-    title: 'Ancestral Echoes Mug',
-    collection: 'Ceramic Collection',
-    price: 'R 250',
-    imageUrl: 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?q=80&w=800&auto=format&fit=crop', // Placeholder mug image
-    available: true
-  },
-  {
-    id: 'm2',
-    title: 'Future Visions Mug',
-    collection: 'Ceramic Collection',
-    price: 'R 250',
-    imageUrl: 'https://images.unsplash.com/photo-1577937927133-66ef06acdf18?q=80&w=800&auto=format&fit=crop',
-    available: true
-  },
-  {
-    id: 'm3',
-    title: 'Spirit Pathways Mug',
-    collection: 'Ceramic Collection',
-    price: 'R 250',
-    imageUrl: 'https://images.unsplash.com/photo-1536939459926-301728717817?q=80&w=800&auto=format&fit=crop',
-    available: true
-  }
-];
+import { ShoppingCart, RotateCcw } from 'lucide-react';
+import { useState } from 'react';
 
 export function Shop() {
-  // const availableWorks = artworks.filter((a) => a.available);
-  const availableWorks = mugs;
+  const [selectedDesign, setSelectedDesign] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen pt-32 pb-24 bg-white">
@@ -49,106 +12,129 @@ export function Shop() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-12"
         >
           <h1 className="text-5xl md:text-6xl font-light tracking-wider text-stone-900 mb-6">
-            Shop
+            SHOP
           </h1>
-          <p className="text-lg text-stone-600 max-w-3xl">
-            Original works, limited edition prints, and collaborations available for purchase
-          </p>
         </motion.div>
 
-        {/* Notice */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-12 p-6 bg-stone-50 border-l-4 border-stone-900"
-        >
-          <p className="text-stone-700">
-            For purchase inquiries, shipping details, or custom commissions, please{' '}
-            <a href="/contact" className="underline hover:text-stone-900">
-              contact us
-            </a>
-            . All works are sold with a certificate of authenticity.
-          </p>
-        </motion.div>
-
-        {/* Available Works */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-light text-stone-900 mb-8">Artisan Mugs</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {availableWorks.map((product, index) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group cursor-pointer"
-              >
-                <div className="aspect-[3/4] overflow-hidden bg-stone-100 mb-4">
-                  <img
-                    src={product.imageUrl}
-                    alt={product.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Product Media */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-8"
+          >
+            <div className="aspect-[4/5] bg-stone-100 overflow-hidden relative group">
+               {selectedDesign ? (
+                 <>
+                  <img 
+                    src={`/images/mug${selectedDesign}.png`} 
+                    alt={`Nokukhanya Mug Design ${selectedDesign}`}
+                    className="w-full h-full object-cover"
                   />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-light text-stone-900">{product.title}</h3>
-                  <p className="text-sm text-stone-500">{product.collection}</p>
-                  
-                  
-                  {product.price && (
-                    <p className="text-lg font-medium text-stone-900 mt-3">{product.price}</p>
-                  )}
-                  <button className="w-full mt-4 px-6 py-3 bg-stone-900 text-white hover:bg-stone-800 transition-colors flex items-center justify-center gap-2">
-                    <ShoppingCart className="w-4 h-4" />
-                    Buy Now
+                  <button 
+                    onClick={() => setSelectedDesign(null)}
+                    className="absolute top-4 right-4 bg-white/80 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+                    title="Back to video"
+                  >
+                    <RotateCcw className="w-5 h-5 text-stone-900" />
                   </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                 </>
+               ) : (
+                  <video 
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline 
+                    controls
+                    className="w-full h-full object-cover"
+                  >
+                      <source src="/videos/archive-video-4.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                  </video>
+               )}
+            </div>
+            
+          </motion.div>
 
-        {/* Limited Edition Prints */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-light text-stone-900 mb-8">Limited Edition Prints</h2>
-          <div className="bg-stone-50 p-8 text-center">
-            <p className="text-stone-600">
-              Limited edition prints coming soon. Subscribe to our newsletter to be notified.
-            </p>
-          </div>
-        </div>
+          {/* Product Details */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-light text-stone-900 mb-4">
+              Nokukhanya Mug by Zama Magubane Arts
+            </h2>
+            <p className="text-2xl font-medium text-stone-900 mb-8">R 450</p>
 
-        {/* Merchandise */}
-        <div>
-          <h2 className="text-3xl font-light text-stone-900 mb-8">Collaborations & Merchandise</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { brand: 'New Balance', product: 'Limited Edition Sneakers', status: 'Sold Out' },
-              { brand: 'Reebok', product: 'Art Collection Apparel', status: 'Available' },
-              { brand: 'NikNaks', product: 'Packaging Design', status: 'In Stores' }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="p-8 border border-stone-200 hover:border-stone-900 transition-colors"
-              >
-                <p className="text-sm text-stone-500 mb-2">{item.brand}</p>
-                <h3 className="text-xl font-light text-stone-900 mb-4">{item.product}</h3>
-                <p className="text-stone-700 mb-6">{item.status}</p>
-                <button className="w-full px-6 py-3 border-2 border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white transition-colors">
-                  Learn More
-                </button>
-              </motion.div>
-            ))}
-          </div>
+            <div className="prose prose-stone max-w-none text-stone-600 space-y-6 mb-12">
+              <p>
+                The Nokukhanya Mug is a limited edition piece from Zama Magubane Arts. Each mug features artwork drawn directly from the studio’s research based practice and embodies the visual language, symbolism, and material sensibility of the artist.
+              </p>
+              <p>
+                This edition translates conceptual art into a functional object while preserving meaning and depth. Nokukhanya is not simply a mug; it is an extension of the studio’s practice and an opportunity to engage with contemporary African art in daily life.
+              </p>
+            </div>
+
+            <div className="border-t border-stone-200 py-8">
+              <h3 className="text-xl font-light text-stone-900 mb-4">Product Details</h3>
+              <p className="text-stone-600 leading-relaxed">
+                The Nokukhanya Mug is produced in high quality ceramic with a matte finish. Each design reflects research, texture, and narrative derived from Zama Magubane Arts collections. Each mug is individually numbered and part of a strictly limited production.
+              </p>
+            </div>
+
+            <div className="mb-8">
+              <div className="flex justify-between items-baseline mb-4">
+                <h3 className="text-xl font-light text-stone-900">Choose Design</h3>
+                <span className="text-stone-500 text-sm">
+                  {selectedDesign ? `Design ${selectedDesign} selected` : 'Please select a design'}
+                </span>
+              </div>
+              <div className="grid grid-cols-6 gap-2">
+                {Array.from({ length: 18 }, (_, i) => i + 1).map((num) => (
+                  <button
+                    key={num}
+                    onClick={() => setSelectedDesign(num)}
+                    className={`aspect-square relative rounded-sm overflow-hidden border-2 transition-all ${
+                      selectedDesign === num 
+                        ? 'border-stone-900 ring-1 ring-stone-900' 
+                        : 'border-transparent hover:border-stone-300'
+                    }`}
+                  >
+                    <img 
+                      src={`/images/mug${num}.png`} 
+                      alt={`Design ${num}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+               <button 
+                 disabled={!selectedDesign}
+                 className={`w-full px-8 py-4 text-white transition-colors flex items-center justify-center gap-3 text-lg ${
+                   selectedDesign 
+                    ? 'bg-stone-900 hover:bg-stone-800' 
+                    : 'bg-stone-400 cursor-not-allowed'
+                 }`}
+               >
+                <ShoppingCart className="w-5 h-5" />
+                {selectedDesign ? 'Add to Cart' : 'Select a Design'}
+              </button>
+              <p className="text-sm text-stone-500 text-center">
+                Secure checkout • Worldwide shipping available
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
   );
 }
+

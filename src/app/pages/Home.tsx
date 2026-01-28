@@ -17,7 +17,7 @@ export function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('/Screenshot 2026-01-21 121422.png')` }}
+          style={{ backgroundImage: `url('/hero-background.png')` }}
         />
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 text-center px-4">
@@ -29,14 +29,24 @@ export function Home() {
           >
             ZAMA MAGUBANE
           </motion.h1>
-          <motion.p
+            <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-white font-light max-w-3xl mx-auto mb-12"
-          >
-            Contemporary artist weaving African heritage, spirituality, and Afro-futurism into transformative visual narratives
-          </motion.p>
+            className="max-w-3xl mx-auto mb-12 text-center"
+            >
+            <p className="text-xl md:text-2xl text-white font-light mb-6 leading-relaxed">
+              An African art house working at the intersection of culture, spirituality, education, and contemporary practice.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center text-white/90">
+              <span className="px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-sm tracking-wide">
+              UNITED NATIONS YOUNG ENTREPRENEUR AWARD (2023)
+              </span>
+              <span className="px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-sm tracking-wide">
+              NYDA TRAILBLAZER AWARD (2023)
+              </span>
+            </div>
+            </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -64,66 +74,193 @@ export function Home() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mb-16"
+          >
+        <h2 className="text-4xl md:text-5xl font-light tracking-wider text-stone-900 mb-4">
+          LICENSED WORKS
+        </h2>
+        <p className="text-lg text-stone-600 max-w-2xl">
+          A selection from recent collections exploring themes of identity, heritage, and transformation
+        </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {featuredArtworks.map((artwork, index) => (
+          <motion.div
+            key={artwork.id}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+          >
+            <Link to={`/portfolio?artwork=${artwork.id}`} className="group block">
+          <div className="aspect-[3/4] overflow-hidden bg-stone-100 mb-4">
+            <img
+              src={artwork.imageUrl}
+              alt={artwork.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+          <div className="space-y-2">
+            <h3 className="text-xl font-light text-stone-900 group-hover:text-stone-600 transition-colors">
+              {artwork.title}
+            </h3>
+            <p className="text-sm text-stone-500">{artwork.collection}</p>
+            <p className="text-sm text-stone-600">{artwork.year} • {artwork.medium}</p>
+          </div>
+            </Link>
+          </motion.div>
+        ))}
+          </div>
+
+          <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        className="text-center mt-12"
+          >
+        <Link
+          to="/portfolio"
+          className="inline-flex items-center gap-2 text-stone-900 hover:text-stone-600 transition-colors group"
+        >
+          View All Works
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </Link>
+            </motion.div>
+            </div>
+          </section>
+  
+          {/* Collabs Section */}
+          <section className="py-24 bg-stone-50">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-16 text-center"
+              >
+              <h2 className="text-4xl md:text-5xl font-light tracking-wider text-stone-900 mb-4">
+              COLLABS
+              </h2>
+              </motion.div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              >
+              <h3 className="text-3xl md:text-4xl font-light tracking-wide text-stone-900 mb-6">
+                POTRENDS
+              </h3>
+              <div className="space-y-4 text-lg text-stone-600 leading-relaxed">
+                <p>
+              The collaboration with POTRENDS involved the translation of visual language from the Zama Magubane Arts practice into a contemporary garment collection. The project explored how art can move from canvas and conceptual space into wearable form while retaining its cultural grounding and symbolic depth.
+                </p>
+                <p>
+              Research for the collaboration focused on material behaviour, pattern placement, and the relationship between body, cloth, and movement. Rather than treating garments as products alone, the process considered clothing as a carrier of narrative, identity, and presence.
+                </p>
+                <p>
+              The resulting collection reflects a balance between artistic authorship and functional design, demonstrating how African rooted visual systems can exist within fashion contexts without dilution. The collaboration stands as an example of how cultural practice and commercial execution can operate in alignment.
+                </p>
+              </div>
+              <Link
+                to="/collaborations"
+                className="inline-flex items-center gap-2 mt-8 text-stone-900 hover:text-stone-600 transition-colors group"
+              >
+                See Collab Details
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              </motion.div>
+              <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="aspect-[4/5] bg-stone-100 overflow-hidden"
+              >
+              <video
+                src="/videos/archive-video-2.mp4"
+                className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+              </motion.div>
+              </div>
+              </div>
+            </section>
+
+      
+
+          {/* Available Collection Section */}
+          <section className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-light tracking-wider text-stone-900 mb-4">
-              Featured Works
-            </h2>
-            <p className="text-lg text-stone-600 max-w-2xl">
-              A selection from recent collections exploring themes of identity, heritage, and transformation
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredArtworks.map((artwork, index) => (
-              <motion.div
-                key={artwork.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Link to={`/portfolio?artwork=${artwork.id}`} className="group block">
-                  <div className="aspect-[3/4] overflow-hidden bg-stone-100 mb-4">
-                    <img
-                      src={artwork.imageUrl}
-                      alt={artwork.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-light text-stone-900 group-hover:text-stone-600 transition-colors">
-                      {artwork.title}
-                    </h3>
-                    <p className="text-sm text-stone-500">{artwork.collection}</p>
-                    <p className="text-sm text-stone-600">{artwork.year} • {artwork.medium}</p>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center mt-12"
-          >
-            <Link
-              to="/portfolio"
-              className="inline-flex items-center gap-2 text-stone-900 hover:text-stone-600 transition-colors group"
+            className="mb-16 text-center"
             >
-              View All Works
+            <h2 className="text-4xl md:text-5xl font-light tracking-wider text-stone-900 mb-4">
+              AVAILABLE COLLECTION
+            </h2>
+            <p className="text-lg text-stone-600 max-w-2xl mx-auto">
+              Unique pieces and merchandise available for purchase
+            </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="aspect-[4/5] bg-stone-100 overflow-hidden"
+            >
+              <video
+              src="/videos/archive-video-3.mp4"
+              className="w-full h-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h3 className="text-3xl md:text-4xl font-light tracking-wide text-stone-900 mb-6">
+              Product Details
+              </h3>
+              <div className="space-y-4 text-lg text-stone-600 leading-relaxed">
+              <p>
+                The Nokukhanya Mug is produced in high quality ceramic with a matte finish. Each design reflects research, texture, and narrative derived from Zama Magubane Arts collections. Each mug is individually numbered and part of a strictly limited production.
+              </p>
+              </div>
+              <Link
+              to="/shop"
+              className="inline-flex items-center gap-2 mt-8 text-stone-900 hover:text-stone-600 transition-colors group"
+              >
+              Visit Shop
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+              </Link>
+            </motion.div>
+            </div>
+          </div>
+          </section>
 
       {/* Upcoming Exhibitions */}
       <section className="py-24 bg-stone-50">
@@ -220,7 +357,7 @@ export function Home() {
               className="aspect-[4/5] bg-stone-100 overflow-hidden"
             >
               <img
-                src="/Screenshot 2026-01-21 114050.png"
+                src="/zama-magubane-profile.png"
                 alt="Zama Magubane"
                 className="w-full h-full object-cover"
               />

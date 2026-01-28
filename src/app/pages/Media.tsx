@@ -76,11 +76,11 @@ export function Media() {
         {/* Videos */}
         <div>
           <h2 className="text-3xl font-light text-stone-900 mb-8">Videos & Films</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: 'Behind the Scenes: UVALO ALUSEKHO', src: '/videos/Recording 2026-01-21 114331.mp4' },
-              { title: 'Studio Visit', src: '/videos/Recording 2026-01-21 115417.mp4' },
-              { title: 'Artist Talk at Zeitz MOCAA', src: '/videos/Recording 2026-01-21 115519.mp4' }
+              { title: 'Behind the Scenes: UVALO ALUSEKHO', src: '/videos/behind-the-scenes-uvalo-alusekho.mp4' },
+              { title: 'Studio Visit', src: '/videos/studio-visit.mp4' },
+              { title: 'Artist Talk at Zeitz MOCAA', src: '/videos/artist-talk-zeitz-mocaa.mp4' }
             ].map((video, index) => (
               <motion.div
                 key={index}
