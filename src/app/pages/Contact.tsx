@@ -23,172 +23,134 @@ export function Contact() {
     }));
   };
 
-  return (
-    <div className="min-h-screen pt-32 pb-24 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <h1 className="text-5xl md:text-6xl font-light tracking-wider text-stone-900 mb-6">
-            Contact
-          </h1>
-          <p className="text-lg text-stone-600 max-w-3xl">
-            For inquiries about artworks, commissions, exhibitions, or collaborations
-          </p>
-        </motion.div>
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Contact Information */}
+  return (
+    <div className="bg-[#f4f3ef] min-h-screen grid grid-cols-1 lg:grid-cols-2">
+      
+      {/* Left Column: Info & Context (Dark) */}
+      <div className="bg-[#3e322d] text-white p-12 lg:p-24 flex flex-col justify-center relative overflow-hidden min-h-[60vh] lg:min-h-screen order-2 lg:order-1">
+         {/* Background Texture/Image Overlay */}
+         <div className="absolute inset-0 opacity-10 bg-[url('/pattern-noise.png')] mix-blend-overlay pointer-events-none" />
+          
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+             initial="hidden"
+             animate="visible"
+             variants={fadeIn}
+             className="relative z-10"
+          >
+             <div className="mb-16 relative">
+                <h1 className="text-6xl md:text-8xl lg:text-9xl leading-none font-light tracking-wide">
+                  GET IN
+                </h1>
+                <span className="font-script text-6xl md:text-8xl text-[#d4c5b0] absolute -bottom-10 left-20 -rotate-6">
+                  Touch
+                </span>
+             </div>
+
+             <div className="space-y-12 mt-20 border-l border-white/20 pl-8 md:pl-12">
+                <div>
+                   <h3 className="text-xs tracking-[0.2em] opacity-60 mb-2 uppercase">General Inquiries</h3>
+                   <a href="mailto:hello@zamamagubane.com" className="text-2xl md:text-3xl font-light hover:text-[#d4c5b0] transition-colors">
+                     hello@zamamagubane.com
+                   </a>
+                </div>
+
+                <div>
+                   <h3 className="text-xs tracking-[0.2em] opacity-60 mb-2 uppercase">Studio</h3>
+                   <address className="text-xl md:text-2xl font-light not-italic leading-relaxed">
+                     Maboneng Precinct,<br />
+                     Johannesburg,<br />
+                     South Africa
+                   </address>
+                </div>
+
+                <div>
+                   <h3 className="text-xs tracking-[0.2em] opacity-60 mb-2 uppercase">Social</h3>
+                   <div className="flex gap-6">
+                      <a href="#" className="flex items-center gap-2 hover:text-[#d4c5b0] transition-colors group">
+                        <Instagram className="w-5 h-5" />
+                        <span className="text-sm tracking-widest uppercase border-b border-transparent group-hover:border-[#d4c5b0]">Instagram</span>
+                      </a>
+                   </div>
+                </div>
+             </div>
+          </motion.div>
+      </div>
+
+      {/* Right Column: Form (Light) */}
+      <div className="bg-[#f4f3ef] p-12 lg:p-24 flex flex-col justify-center order-1 lg:order-2 pt-32 lg:pt-24">
+         <motion.div
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h2 className="text-3xl font-light text-stone-900 mb-8">Get in Touch</h2>
-            
-            <div className="space-y-8 mb-12">
-              <div className="flex items-start gap-4">
-                <Mail className="w-6 h-6 text-stone-400 flex-shrink-0 mt-1" />
-                <div>
-                  <p className="text-sm text-stone-500 mb-1">Email</p>
-                  <a href="mailto:info@zamamagubane.art" className="text-stone-900 hover:text-stone-600 transition-colors">
-                    info@zamamagubane.art
-                  </a>
-                </div>
-              </div>
+         >
+            <h2 className="text-3xl md:text-4xl text-[#2a2422] font-light mb-8">Send a Message</h2>
+            <form onSubmit={handleSubmit} className="space-y-8">
+               <div className="border-b border-[#2a2422]/20 focus-within:border-[#804a00] transition-colors">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="YOUR NAME"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full bg-transparent py-4 text-[#2a2422] placeholder-[#2a2422]/40 focus:outline-none text-lg tracking-wide uppercase"
+                    required
+                  />
+               </div>
+               
+               <div className="border-b border-[#2a2422]/20 focus-within:border-[#804a00] transition-colors">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="EMAIL ADDRESS"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full bg-transparent py-4 text-[#2a2422] placeholder-[#2a2422]/40 focus:outline-none text-lg tracking-wide uppercase"
+                    required
+                  />
+               </div>
 
-              <div className="flex items-start gap-4">
-                <Phone className="w-6 h-6 text-stone-400 flex-shrink-0 mt-1" />
-                <div>
-                  <p className="text-sm text-stone-500 mb-1">Phone</p>
-                  <p className="text-stone-900">+27 (0) 21 XXX XXXX</p>
-                </div>
-              </div>
+               <div className="border-b border-[#2a2422]/20 focus-within:border-[#804a00] transition-colors">
+                  <select
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className="w-full bg-transparent py-4 text-[#2a2422] focus:outline-none text-lg tracking-wide uppercase appearance-none"
+                    required
+                  >
+                    <option value="" disabled className="text-[#2a2422]/40">SELECT SUBJECT</option>
+                    <option value="inquiry">General Inquiry</option>
+                    <option value="commission">Commission Request</option>
+                    <option value="press">Press & Media</option>
+                    <option value="other">Other</option>
+                  </select>
+               </div>
 
-              <div className="flex items-start gap-4">
-                <MapPin className="w-6 h-6 text-stone-400 flex-shrink-0 mt-1" />
-                <div>
-                  <p className="text-sm text-stone-500 mb-1">Location</p>
-                  <p className="text-stone-900">Cape Town, South Africa</p>
-                </div>
-              </div>
+               <div className="pt-4">
+                  <textarea
+                    name="message"
+                    rows={4}
+                    placeholder="TELL US MORE ABOUT YOUR PROJECT OR INQUIRY..."
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full bg-[#e8e6e1] p-6 text-[#2a2422] placeholder-[#2a2422]/40 focus:outline-none text-base font-light resize-none rounded-sm"
+                    required
+                  />
+               </div>
 
-              <div className="flex items-start gap-4">
-                <Instagram className="w-6 h-6 text-stone-400 flex-shrink-0 mt-1" />
-                <div>
-                  <p className="text-sm text-stone-500 mb-1">Social Media</p>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-stone-900 hover:text-stone-600 transition-colors">
-                    @zamamagubane.art
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 bg-stone-50 border-l-4 border-stone-900">
-              <h3 className="font-medium text-stone-900 mb-2">Newsletter</h3>
-              <p className="text-sm text-stone-600 mb-4">
-                Subscribe to receive updates on new works, exhibitions, and events.
-              </p>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="flex-1 px-4 py-2 border border-stone-300 focus:outline-none focus:border-stone-900 transition-colors"
-                />
-                <button className="px-6 py-2 bg-stone-900 text-white hover:bg-stone-800 transition-colors">
-                  Subscribe
-                </button>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm text-stone-700 mb-2">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-stone-300 focus:outline-none focus:border-stone-900 transition-colors"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm text-stone-700 mb-2">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-stone-300 focus:outline-none focus:border-stone-900 transition-colors"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-sm text-stone-700 mb-2">
-                  Subject *
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-stone-300 focus:outline-none focus:border-stone-900 transition-colors"
-                >
-                  <option value="">Select a subject</option>
-                  <option value="artwork">Artwork Inquiry</option>
-                  <option value="commission">Commission Request</option>
-                  <option value="exhibition">Exhibition Opportunity</option>
-                  <option value="collaboration">Collaboration</option>
-                  <option value="press">Press Inquiry</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm text-stone-700 mb-2">
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 border border-stone-300 focus:outline-none focus:border-stone-900 transition-colors resize-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full px-8 py-4 bg-stone-900 text-white hover:bg-stone-800 transition-colors flex items-center justify-center gap-2"
-              >
-                Send Message
-                <Send className="w-4 h-4" />
-              </button>
+               <button
+                 type="submit"
+                 className="group inline-flex items-center gap-3 px-10 py-4 bg-[#2a2422] text-white hover:bg-[#804a00] transition-all duration-300"
+               >
+                 <span className="tracking-[0.2em] text-sm uppercase font-medium">Send Message</span>
+                 <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+               </button>
             </form>
-          </motion.div>
-        </div>
+         </motion.div>
       </div>
     </div>
   );

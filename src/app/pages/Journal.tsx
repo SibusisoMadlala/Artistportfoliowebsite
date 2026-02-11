@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Calendar, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export function Journal() {
   const posts = [
@@ -30,46 +30,71 @@ export function Journal() {
   ];
 
   return (
-    <div className="min-h-screen pt-32 pb-24 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-32 pb-24 bg-[#f4f3ef]">
+      <div className="max-w-5xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          transition={{ duration: 0.8 }}
+          className="mb-24 text-center"
         >
-          <h1 className="text-5xl md:text-6xl font-light tracking-wider text-stone-900 mb-6">
-            Journal
-          </h1>
-          <p className="text-lg text-stone-600 max-w-3xl">
-            Thoughts on process, research, and the creative journey
-          </p>
+          <span className="font-marketing text-xs tracking-[0.3em] uppercase text-[#2a2422]/60 block mb-4">
+            The Archive
+          </span>
+          <div className="relative inline-block">
+             <h1 className="text-6xl md:text-8xl font-heading text-[#2a2422] mb-6">
+                Journal
+             </h1>
+             <span className="absolute -bottom-8 right-0 font-script text-3xl md:text-4xl text-[#804a00] -rotate-6">
+                Reflections of Practice
+             </span>
+          </div>
         </motion.div>
 
-        <div className="space-y-12">
+        <div className="space-y-0 relative">
+          {/* Vertical Line */}
+          <div className="absolute left-0 lg:left-32 top-0 bottom-0 w-px bg-[#2a2422]/10 hidden lg:block" />
+
           {posts.map((post, index) => (
             <motion.article
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="pb-12 border-b border-stone-200 last:border-0 group cursor-pointer"
+              className="group relative border-b border-[#2a2422]/10 last:border-0 py-12 lg:pl-48"
             >
-              <div className="flex items-center gap-4 mb-4">
-                <Calendar className="w-4 h-4 text-stone-400" />
-                <p className="text-sm text-stone-500">{post.date}</p>
-                <span className="px-3 py-1 bg-stone-100 text-xs text-stone-600 tracking-wider">
-                  {post.category}
-                </span>
+              {/* Date Tag - Desktop: Absolute left, Mobile: Normal flow */}
+              <div className="lg:absolute lg:left-0 lg:top-16 lg:w-24 lg:text-right mb-4 lg:mb-0">
+                 <span className="font-marketing text-xs tracking-widest uppercase text-[#2a2422]/50">
+                    {post.date}
+                 </span>
               </div>
-              <h2 className="text-3xl font-light text-stone-900 mb-4 group-hover:text-stone-600 transition-colors">
-                {post.title}
-              </h2>
-              <p className="text-stone-600 leading-relaxed mb-6">{post.excerpt}</p>
-              <button className="inline-flex items-center gap-2 text-stone-900 hover:text-stone-600 transition-colors group">
-                Read More
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+
+              <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+                 <div className="space-y-4 max-w-2xl">
+                    <div className="flex items-center gap-4">
+                       <span className="px-3 py-1 border border-[#2a2422]/20 rounded-full text-[10px] uppercase tracking-widest text-[#2a2422]/70">
+                          {post.category}
+                       </span>
+                    </div>
+                    
+                    <h2 className="text-3xl md:text-4xl font-heading text-[#2a2422] group-hover:text-[#804a00] transition-colors duration-300 cursor-pointer">
+                       {post.title}
+                    </h2>
+                    
+                    <p className="font-body text-xl text-[#2a2422]/60 italic leading-relaxed">
+                       {post.excerpt}
+                    </p>
+                 </div>
+
+                 <motion.button 
+                    whileHover={{ x: 10 }}
+                    className="hidden lg:flex items-center justify-center w-12 h-12 rounded-full border border-[#2a2422]/10 text-[#2a2422] group-hover:border-[#2a2422] group-hover:bg-[#2a2422] group-hover:text-[#f4f3ef] transition-all duration-300"
+                 >
+                    <ArrowRight className="w-5 h-5" />
+                 </motion.button>
+              </div>
             </motion.article>
           ))}
         </div>

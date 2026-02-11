@@ -1,138 +1,160 @@
 import { motion } from 'motion/react';
 import { ShoppingCart, RotateCcw } from 'lucide-react';
 import { useState } from 'react';
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 export function Shop() {
   const [selectedDesign, setSelectedDesign] = useState<number | null>(null);
 
-  return (
-    <div className="min-h-screen pt-32 pb-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
-        >
-          <h1 className="text-5xl md:text-6xl font-light tracking-wider text-stone-900 mb-6">
-            SHOP
-          </h1>
-        </motion.div>
+  // Design variants
+  const designs = [1, 2, 3, 4];
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Product Media */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-8"
-          >
-            <div className="aspect-[4/5] bg-stone-100 overflow-hidden relative group">
-               {selectedDesign ? (
-                 <>
-                  <img 
+  return (
+    <div className="min-h-screen flex flex-col lg:flex-row">
+      {/* Left Column - Dark - Product Visuals */}
+      <div className="lg:w-1/2 bg-[#2a2422] min-h-[50vh] lg:min-h-screen p-8 lg:p-20 relative flex flex-col justify-center items-center">
+        <div className="absolute top-8 left-8">
+          <span className="font-marketing text-xs tracking-[0.2em] text-[#f4f3ef]/60 uppercase">
+             Collection 001
+          </span>
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="w-full max-w-md aspect-[4/5] relative bg-[#1c1817] shadow-2xl overflow-hidden"
+        >
+           {selectedDesign ? (
+             <div className="relative w-full h-full group">
+               <ImageWithFallback
                     src={`/images/mug${selectedDesign}.png`} 
                     alt={`Nokukhanya Mug Design ${selectedDesign}`}
                     className="w-full h-full object-cover"
+                    fallbackText={`Design ${selectedDesign}`}
                   />
-                  <button 
-                    onClick={() => setSelectedDesign(null)}
-                    className="absolute top-4 right-4 bg-white/80 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
-                    title="Back to video"
-                  >
-                    <RotateCcw className="w-5 h-5 text-stone-900" />
-                  </button>
-                 </>
-               ) : (
-                  <video 
-                    autoPlay 
-                    muted 
-                    loop 
-                    playsInline 
-                    controls
-                    className="w-full h-full object-cover"
-                  >
-                      <source src="/videos/archive-video-4.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                  </video>
-               )}
-            </div>
-            
-          </motion.div>
-
-          {/* Product Details */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-light text-stone-900 mb-4">
-              Nokukhanya Mug by Zama Magubane Arts
-            </h2>
-            <p className="text-2xl font-medium text-stone-900 mb-8">R 450</p>
-
-            <div className="prose prose-stone max-w-none text-stone-600 space-y-6 mb-12">
-              <p>
-                The Nokukhanya Mug is a limited edition piece from Zama Magubane Arts. Each mug features artwork drawn directly from the studio’s research based practice and embodies the visual language, symbolism, and material sensibility of the artist.
-              </p>
-              <p>
-                This edition translates conceptual art into a functional object while preserving meaning and depth. Nokukhanya is not simply a mug; it is an extension of the studio’s practice and an opportunity to engage with contemporary African art in daily life.
-              </p>
-            </div>
-
-            <div className="border-t border-stone-200 py-8">
-              <h3 className="text-xl font-light text-stone-900 mb-4">Product Details</h3>
-              <p className="text-stone-600 leading-relaxed">
-                The Nokukhanya Mug is produced in high quality ceramic with a matte finish. Each design reflects research, texture, and narrative derived from Zama Magubane Arts collections. Each mug is individually numbered and part of a strictly limited production.
-              </p>
-            </div>
-
-            <div className="mb-8">
-              <div className="flex justify-between items-baseline mb-4">
-                <h3 className="text-xl font-light text-stone-900">Choose Design</h3>
-                <span className="text-stone-500 text-sm">
-                  {selectedDesign ? `Design ${selectedDesign} selected` : 'Please select a design'}
-                </span>
+                <button 
+                  onClick={() => setSelectedDesign(null)}
+                  className="absolute top-4 right-4 bg-[#f4f3ef] p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:scale-110 shadow-lg"
+                  title="Back to video"
+                >
+                  <RotateCcw className="w-5 h-5 text-[#2a2422]" />
+                </button>
+             </div>
+           ) : (
+              <div className="w-full h-full relative">
+                <video 
+                  autoPlay 
+                  muted 
+                  loop 
+                  playsInline
+                  className="w-full h-full object-cover opacity-90"
+                >
+                  <source src="/videos/mug-rotation.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-[#2a2422]/10 pointer-events-none" />
+                
+                {/* Overlay Text only when video is playing */}
+                <div className="absolute bottom-6 left-6 right-6">
+                    <p className="text-[#f4f3ef] text-sm font-marketing tracking-widest uppercase opacity-60">
+                        View 360° Rotation
+                    </p>
+                </div>
               </div>
-              <div className="grid grid-cols-6 gap-2">
-                {Array.from({ length: 18 }, (_, i) => i + 1).map((num) => (
-                  <button
+           )}
+        </motion.div>
+        
+        {/* Simple Navigation Dials for Visuals */}
+        <div className="mt-8 flex gap-4">
+             {designs.map((num) => (
+                <button
                     key={num}
                     onClick={() => setSelectedDesign(num)}
-                    className={`aspect-square relative rounded-sm overflow-hidden border-2 transition-all ${
-                      selectedDesign === num 
-                        ? 'border-stone-900 ring-1 ring-stone-900' 
-                        : 'border-transparent hover:border-stone-300'
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        selectedDesign === num 
+                        ? 'bg-[#f4f3ef] scale-125' 
+                        : 'bg-[#f4f3ef]/20 hover:bg-[#f4f3ef]/50'
                     }`}
-                  >
-                    <img 
-                      src={`/images/mug${num}.png`} 
-                      alt={`Design ${num}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4">
-               <button 
-                 disabled={!selectedDesign}
-                 className={`w-full px-8 py-4 text-white transition-colors flex items-center justify-center gap-3 text-lg ${
-                   selectedDesign 
-                    ? 'bg-stone-900 hover:bg-stone-800' 
-                    : 'bg-stone-400 cursor-not-allowed'
-                 }`}
-               >
-                <ShoppingCart className="w-5 h-5" />
-                {selectedDesign ? 'Add to Cart' : 'Select a Design'}
-              </button>
-              <p className="text-sm text-stone-500 text-center">
-                Secure checkout • Worldwide shipping available
-              </p>
-            </div>
-          </motion.div>
+                />
+             ))}
+             <button
+                onClick={() => setSelectedDesign(null)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    selectedDesign === null 
+                    ? 'bg-[#f4f3ef] scale-125' 
+                    : 'bg-[#f4f3ef]/20 hover:bg-[#f4f3ef]/50'
+                }`}
+            />
         </div>
+      </div>
+
+      {/* Right Column - Light - Product Details */}
+      <div className="lg:w-1/2 bg-[#f4f3ef] min-h-screen px-6 py-12 lg:p-20 flex flex-col justify-center">
+        <motion.div
+           initial={{ opacity: 0, x: 20 }}
+           animate={{ opacity: 1, x: 0 }}
+           transition={{ duration: 0.8, delay: 0.2 }}
+           className="max-w-xl mx-auto lg:mx-0"
+        >
+           {/* Header */}
+           <div className="relative mb-12">
+               <h1 className="font-heading text-5xl md:text-7xl text-[#2a2422] mb-4">
+                  Nokukhanya
+               </h1>
+               <span className="font-script text-3xl md:text-5xl text-[#804a00] absolute -bottom-6 right-0 -rotate-6">
+                  Mug Collection
+               </span>
+           </div>
+
+           <div className="space-y-8 mt-16 font-marketing">
+              <div className="flex justify-between items-baseline border-b border-[#2a2422]/10 pb-4">
+                 <span className="text-sm tracking-widest uppercase text-[#2a2422]/60">Price</span>
+                 <span className="text-2xl text-[#2a2422]">R 350.00</span>
+              </div>
+
+              <div>
+                <p className="text-[#2a2422]/80 leading-relaxed font-body text-lg">
+                  Start your day with art. The Nokukhanya Mug brings the warmth and vibrancy of Zama Magubane's signature patterns to your daily ritual. 
+                  Featured in the "Uvalo Alusekho" video series, these designs celebrate resilience and joy.
+                </p>
+              </div>
+
+              {/* Variant Selector */}
+              <div className="space-y-4">
+                 <span className="text-sm tracking-widest uppercase text-[#2a2422]/60">Select Design</span>
+                 <div className="grid grid-cols-4 gap-4">
+                    {designs.map((num) => (
+                      <button
+                        key={num}
+                        onClick={() => setSelectedDesign(num)}
+                        className={`aspect-square border transition-all duration-300 relative overflow-hidden group ${
+                           selectedDesign === num 
+                           ? 'border-[#2a2422] ring-1 ring-[#2a2422] ring-offset-2 ring-offset-[#f4f3ef]' 
+                           : 'border-[#2a2422]/20 hover:border-[#2a2422]/40'
+                        }`}
+                      >
+                         <ImageWithFallback 
+                            src={`/images/mug${num}.png`}
+                            alt={`Design ${num}`}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            fallbackText={`${num}`}
+                         />
+                      </button>
+                    ))}
+                 </div>
+              </div>
+
+              {/* Action */}
+              <button className="w-full bg-[#2a2422] text-[#f4f3ef] py-6 px-8 hover:bg-[#804a00] transition-colors duration-300 flex items-center justify-center gap-4 group mt-8">
+                 <span className="text-sm tracking-[0.2em] uppercase">Add to Cart</span>
+                 <ShoppingCart className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              <p className="text-xs text-[#2a2422]/40 text-center uppercase tracking-widest mt-6">
+                 Limited Stock Available • Secure Checkout
+              </p>
+           </div>
+        </motion.div>
       </div>
     </div>
   );

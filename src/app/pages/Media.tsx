@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ExternalLink, Play } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 export function Media() {
   const collaborations = [
@@ -15,93 +15,85 @@ export function Media() {
   ];
 
   return (
-    <div className="min-h-screen pt-32 pb-24 bg-white">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-32 pb-24 bg-[#2a2422] text-[#f4f3ef]">
+      <div className="max-w-6xl mx-auto px-6">
+        
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <h1 className="text-5xl md:text-6xl font-light tracking-wider text-stone-900 mb-6">
-            Media & Collaborations
-          </h1>
+           initial={{ opacity: 0, y: 30 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8 }}
+           className="border-b border-[#f4f3ef]/20 pb-24 mb-24"
+        > 
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
+              <h1 className="text-6xl md:text-8xl font-heading leading-none">
+                Media <span className="block text-[#804a00] font-script text-5xl md:text-6xl mt-4">& Press</span>
+              </h1>
+              <p className="font-body text-xl text-[#f4f3ef]/60 max-w-md">
+                 Documenting the conversation between traditional practice and contemporary culture through global partnerships and critical discourse.
+              </p>
+           </div>
         </motion.div>
 
-        {/* Brand Collaborations */}
-        <div className="mb-24">
-          <h2 className="text-3xl font-light text-stone-900 mb-8">Brand Collaborations</h2>
-          <div className="space-y-8">
-            {collaborations.map((collab, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="border-l-4 border-stone-900 pl-8 py-6 hover:bg-stone-50 transition-colors"
-              >
-                <p className="text-sm text-stone-500 mb-2">{collab.year}</p>
-                <h3 className="text-2xl font-light text-stone-900 mb-3">{collab.brand}</h3>
-                <p className="text-stone-600 leading-relaxed">{collab.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
 
-        {/* Press & Interviews */}
-        <div className="mb-24">
-          <h2 className="text-3xl font-light text-stone-900 mb-8">Press & Interviews</h2>
-          <div className="space-y-6">
-            {press.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="flex justify-between items-start p-6 border border-stone-200 hover:border-stone-900 transition-colors group cursor-pointer"
-              >
-                <div>
-                  <p className="text-sm text-stone-500 mb-1">{item.publication}</p>
-                  <h3 className="text-xl font-light text-stone-900 mb-2">{item.title}</h3>
-                  <p className="text-sm text-stone-600">{item.year}</p>
-                </div>
-                <ExternalLink className="w-5 h-5 text-stone-400 group-hover:text-stone-900 transition-colors flex-shrink-0" />
-              </motion.div>
-            ))}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-40">
+          
+          {/* Brand Collaborations List */}
+          <div>
+             <h2 className="font-marketing text-xs tracking-[0.3em] uppercase text-[#804a00] mb-12">
+               Select Partnerships
+             </h2>
+             <div className="space-y-16">
+                {collaborations.map((collab, index) => (
+                   <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="group"
+                   >
+                      <div className="flex justify-between items-baseline mb-4">
+                         <h3 className="text-3xl font-heading text-[#f4f3ef] group-hover:text-[#804a00] transition-colors">{collab.brand}</h3>
+                         <span className="font-marketing text-xs text-[#f4f3ef]/40">{collab.year}</span>
+                      </div>
+                      <p className="font-body text-lg text-[#f4f3ef]/60 leading-relaxed">
+                         {collab.description}
+                      </p>
+                   </motion.div>
+                ))}
+             </div>
           </div>
-        </div>
 
-        {/* Videos */}
-        <div>
-          <h2 className="text-3xl font-light text-stone-900 mb-8">Videos & Films</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: 'Behind the Scenes: UVALO ALUSEKHO', src: '/videos/behind-the-scenes-uvalo-alusekho.mp4' },
-              { title: 'Studio Visit', src: '/videos/studio-visit.mp4' },
-              { title: 'Artist Talk at Zeitz MOCAA', src: '/videos/artist-talk-zeitz-mocaa.mp4' }
-            ].map((video, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group cursor-pointer"
-              >
-                <video
-                  className="aspect-video w-full mb-4 object-cover"
-                  controls
-                  muted
-                  src={video.src}
-                >
-                  Your browser does not support the video tag.
-                </video>
-                <h3 className="text-lg font-light text-stone-900">{video.title}</h3>
-              </motion.div>
-            ))}
+          {/* Press List */}
+          <div>
+            <h2 className="font-marketing text-xs tracking-[0.3em] uppercase text-[#804a00] mb-12">
+               Press Coverage
+             </h2>
+             <div className="space-y-0">
+                {press.map((item, index) => (
+                   <motion.a
+                      href="#" 
+                      key={index}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="block border-t border-[#f4f3ef]/10 py-8 group hover:bg-[#f4f3ef]/5 -mx-4 px-4 transition-colors"
+                   >
+                      <div className="flex justify-between items-start mb-2">
+                         <span className="font-marketing text-xs text-[#f4f3ef]/40 uppercase tracking-widest">{item.publication}</span>
+                         <ExternalLink className="w-4 h-4 text-[#f4f3ef]/20 group-hover:text-[#f4f3ef] transition-colors" />
+                      </div>
+                      <h3 className="text-2xl font-body italic text-[#f4f3ef] mb-2 group-hover:translate-x-2 transition-transform duration-300">
+                        "{item.title}"
+                      </h3>
+                      <span className="font-marketing text-xs text-[#f4f3ef]/20">{item.year}</span>
+                   </motion.a>
+                ))}
+             </div>
           </div>
+
         </div>
       </div>
     </div>

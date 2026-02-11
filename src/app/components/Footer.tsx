@@ -2,29 +2,32 @@ import { Link } from 'react-router-dom';
 import { Instagram, Mail, Linkedin } from 'lucide-react';
 
 export function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-stone-900 text-stone-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* About */}
-          <div>
-            <h3 className="text-white text-lg font-light tracking-wider mb-4">
+    <footer className="bg-[#2a2422] text-[#f4f3ef] border-t border-[#f4f3ef]/10">
+      <div className="max-w-[1400px] mx-auto px-6 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-24">
+          
+          {/* Brand Column */}
+          <div className="lg:col-span-4 space-y-6">
+            <h3 className="font-heading text-2xl text-[#f4f3ef]">
               ZAMA MAGUBANE
             </h3>
-            <p className="text-sm leading-relaxed text-stone-400">
+            <p className="font-body text-[#f4f3ef]/60 text-lg leading-relaxed max-w-sm">
               Contemporary artist exploring African heritage, spirituality, and Afro-futurism through mixed media and installation art.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-white text-sm tracking-wider mb-4">Quick Links</h4>
-            <nav className="space-y-2">
-              {['Portfolio', 'About', 'Exhibitions', 'Shop'].map((link) => (
+          {/* Links Column */}
+          <div className="lg:col-span-2">
+            <h4 className="font-marketing text-xs tracking-[0.2em] uppercase text-[#804a00] mb-6">Navigation</h4>
+            <nav className="flex flex-col gap-3 font-marketing text-sm tracking-widest uppercase text-[#f4f3ef]/60">
+              {['Portfolio', 'Exhibitions', 'Collaborations', 'Shop', 'About'].map((link) => (
                 <Link
                   key={link}
                   to={`/${link.toLowerCase()}`}
-                  className="block text-sm text-stone-400 hover:text-white transition-colors"
+                  className="hover:text-[#f4f3ef] transition-colors w-fit"
                 >
                   {link}
                 </Link>
@@ -32,71 +35,45 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="text-white text-sm tracking-wider mb-4">Contact</h4>
-            <div className="space-y-2 text-sm text-stone-400">
+          {/* Contact Column */}
+          <div className="lg:col-span-3">
+            <h4 className="font-marketing text-xs tracking-[0.2em] uppercase text-[#804a00] mb-6">Contact</h4>
+            <div className="space-y-4 font-body text-[#f4f3ef]/60 text-lg">
               <p>Cape Town, South Africa</p>
-              <a
-                href="mailto:info@zamamagubane.art"
-                className="block hover:text-white transition-colors"
-              >
+              <a href="mailto:info@zamamagubane.art" className="block hover:text-[#f4f3ef] transition-colors">
                 info@zamamagubane.art
               </a>
-              <p>+27 (0) 21 XXX XXXX</p>
+              <div className="flex gap-4 pt-2">
+                 <a href="https://instagram.com" target="_blank" rel="noreferrer" className="text-[#f4f3ef]/40 hover:text-[#f4f3ef] transition-colors"><Instagram size={20} /></a>
+                 <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-[#f4f3ef]/40 hover:text-[#f4f3ef] transition-colors"><Linkedin size={20} /></a>
+              </div>
             </div>
           </div>
 
-          {/* Newsletter & Social */}
-          <div>
-            <h4 className="text-white text-sm tracking-wider mb-4">Stay Connected</h4>
-            <div className="flex space-x-4 mb-6">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-stone-400 hover:text-white transition-colors"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="mailto:info@zamamagubane.art"
-                className="text-stone-400 hover:text-white transition-colors"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-stone-400 hover:text-white transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </div>
-            <div>
-              <input
+          {/* Newsletter Column */}
+          <div className="lg:col-span-3">
+             <h4 className="font-marketing text-xs tracking-[0.2em] uppercase text-[#804a00] mb-6">Newsletter</h4>
+             <div className="flex flex-col gap-4">
+               <input
                 type="email"
-                placeholder="Subscribe to newsletter"
-                className="w-full px-4 py-2 bg-stone-800 border border-stone-700 rounded-lg text-sm text-white placeholder-stone-500 focus:outline-none focus:border-stone-500 transition-colors"
+                placeholder="EMAIL ADDRESS"
+                className="bg-transparent border-b border-[#f4f3ef]/20 py-3 text-[#f4f3ef] placeholder:text-[#f4f3ef]/20 font-marketing text-xs tracking-widest focus:outline-none focus:border-[#804a00] transition-colors"
               />
-            </div>
+              <button className="self-start text-[#f4f3ef]/40 hover:text-[#f4f3ef] font-marketing text-xs uppercase tracking-widest transition-colors">
+                 Subscribe
+              </button>
+             </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-stone-800">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-stone-500">
-              © {new Date().getFullYear()} Zama Magubane Arts. All rights reserved.
-            </p>
-            <div className="flex space-x-6 text-sm text-stone-500">
-              <Link to="/privacy" className="hover:text-white transition-colors">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="hover:text-white transition-colors">
-                Terms of Use
-              </Link>
-            </div>
+        {/* Bottom Bar */}
+        <div className="mt-20 pt-8 border-t border-[#f4f3ef]/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="font-marketing text-xs text-[#f4f3ef]/30 uppercase tracking-widest">
+            © {year} Zama Magubane Arts
+          </p>
+          <div className="flex gap-8">
+             <Link to="/privacy" className="font-marketing text-xs text-[#f4f3ef]/30 hover:text-[#f4f3ef] uppercase tracking-widest transition-colors">Privacy</Link>
+             <Link to="/terms" className="font-marketing text-xs text-[#f4f3ef]/30 hover:text-[#f4f3ef] uppercase tracking-widest transition-colors">Terms</Link>
           </div>
         </div>
       </div>
