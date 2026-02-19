@@ -15,12 +15,11 @@ export function Navbar() {
 
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/portfolio', label: 'Portfolio' },
+    { path: '/licensed-work', label: 'Licensed Work' },
+    { path: '/catalogue', label: 'Catalogue' },
     { path: '/about', label: 'About' },
     { path: '/collaborations', label: 'Collabs' },
     { path: '/exhibitions', label: 'Exhibitions' },
-    { path: '/journal', label: 'Journal' },
-    { path: '/media', label: 'Press' },
     { path: '/shop', label: 'Shop' },
     { path: '/contact', label: 'Contact' }
   ];

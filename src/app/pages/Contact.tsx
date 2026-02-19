@@ -54,8 +54,8 @@ export function Contact() {
              <div className="space-y-12 mt-20 border-l border-white/20 pl-8 md:pl-12">
                 <div>
                    <h3 className="text-xs tracking-[0.2em] opacity-60 mb-2 uppercase">General Inquiries</h3>
-                   <a href="mailto:hello@zamamagubane.com" className="text-2xl md:text-3xl font-light hover:text-[#d4c5b0] transition-colors">
-                     hello@zamamagubane.com
+                     <a href="mailto:Zamamagubanearts@gmail.com" className="text-2xl md:text-3xl font-light hover:text-[#d4c5b0] transition-colors">
+                       Zamamagubanearts@gmail.com
                    </a>
                 </div>
 
@@ -71,7 +71,7 @@ export function Contact() {
                 <div>
                    <h3 className="text-xs tracking-[0.2em] opacity-60 mb-2 uppercase">Social</h3>
                    <div className="flex gap-6">
-                      <a href="#" className="flex items-center gap-2 hover:text-[#d4c5b0] transition-colors group">
+                      <a href="https://www.instagram.com/uzama.magubane/" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-[#d4c5b0] transition-colors group">
                         <Instagram className="w-5 h-5" />
                         <span className="text-sm tracking-widest uppercase border-b border-transparent group-hover:border-[#d4c5b0]">Instagram</span>
                       </a>

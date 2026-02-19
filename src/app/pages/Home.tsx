@@ -20,12 +20,12 @@ export function Home() {
       {/* SECTION 1: HERO */}
       <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
         {/* Left: Image */}
-        <div className="relative h-[60vh] md:h-screen w-full order-1 md:order-1">
-           <div 
-             className="absolute inset-0 bg-cover bg-center"
-             style={{ backgroundImage: `url('/threads-of-heritage.png')` }}
-           />
-        </div>
+      <div className="relative h-[60vh] md:h-screen w-full order-1 md:order-1">
+         <div 
+           className="absolute inset-0 bg-cover bg-center"
+           style={{ backgroundImage: `url('/images/gallery-image-02.jpeg')` }}
+         />
+      </div>
 
         {/* Right: Text Content */}
         <div className="bg-[#3e322d] flex flex-col justify-center items-center md:items-start px-8 md:px-20 py-20 relative order-2 md:order-2">
@@ -36,12 +36,12 @@ export function Home() {
              variants={fadeIn}
              className="relative z-10 text-white text-center md:text-left"
            >
-             <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-widest leading-none font-light">
-               PORTFOLIO
-             </h1>
-             <span className="font-script text-5xl md:text-7xl lg:text-8xl text-[#d4c5b0] absolute -bottom-8 right-0 md:-right-4 md:translate-x-12 transform -rotate-6 opacity-90 block">
-               Creative
-             </span>
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl tracking-widest leading-none font-light">
+               Zama Magubane
+            </h1>
+            <span className="font-script text-base sm:text-lg md:text-4xl lg:text-5xl text-[#d4c5b0] mt-2 md:mt-4 block transform -rotate-6 opacity-90">
+               Art
+            </span>
              
              <div className="mt-20 md:mt-32 space-y-2">
                 <p className="text-sm tracking-[0.3em] uppercase opacity-70">Zama Magubane</p>
@@ -91,7 +91,7 @@ export function Home() {
          <div className="relative h-[60vh] md:h-auto order-1 md:order-2">
             <div 
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url('/zama-magubane-profile.png')` }}
+              style={{ backgroundImage: `url('images/IMG_9544.jpeg')` }}
             />
          </div>
       </section>
@@ -107,7 +107,7 @@ export function Home() {
                className="mb-20 text-center relative"
             >
                <h2 className="text-5xl md:text-7xl inline-block relative z-10">
-                 PREVIOUS
+                 Licensed
                </h2>
                <span className="font-script text-6xl md:text-8xl text-[#d4c5b0] absolute top-10 left-1/2 -translate-x-1/2 -rotate-2 w-full pointer-events-none">
                  Work
@@ -119,10 +119,10 @@ export function Home() {
                <div className="md:col-span-2 relative aspect-[21/9] group overflow-hidden cursor-pointer">
                   <div 
                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                     style={{ backgroundImage: `url('/future-visions.png')` }}
+                     style={{ backgroundImage: `url('images/gallery-image-20.jpeg')` }}
                   />
                   <div className="absolute bottom-0 left-0 p-6 bg-black/20 backdrop-blur-sm w-full">
-                     <p className="text-sm tracking-widest uppercase">Future Visions Exhibition</p>
+                     <p className="text-sm tracking-widest uppercase">Uvalo Alusekho</p>
                   </div>
                </div>
 
@@ -131,21 +131,23 @@ export function Home() {
                <div className="aspect-[4/5] relative group overflow-hidden">
                    <div 
                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                     style={{ backgroundImage: `url('/ancestral-echoes.jpg')` }}
+                     style={{ backgroundImage: `url('images/gallery-image-07.jpeg')` }}
                   />
                   <div className="absolute bottom-0 left-0 p-4">
-                     <p className="text-xs tracking-widest uppercase opacity-80">Ancestral Echoes</p>
+                     <p className="text-xs tracking-widest uppercase opacity-80">Odokrwala</p>
                   </div>
                </div>
+
+               
 
                {/* Item 2 */}
                 <div className="aspect-[4/5] relative group overflow-hidden md:mt-24">
                    <div 
                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                     style={{ backgroundImage: `url('/spirit-pathways.png')` }}
+                     style={{ backgroundImage: `url('images/gallery-image-04.jpeg')` }}
                   />
                    <div className="absolute bottom-0 left-0 p-4">
-                     <p className="text-xs tracking-widest uppercase opacity-80">Spirit Pathways</p>
+                     <p className="text-xs tracking-widest uppercase opacity-80">Izinwele Zabantu</p>
                   </div>
                </div>
             </div>
@@ -167,92 +169,169 @@ export function Home() {
         </div>
       </section>
 
-      {/* SECTION 5: EXPERIENCE / EDUCATION */}
-      <section className="bg-[#f4f3ef] text-[#2a2422]">
-          <div className="grid grid-cols-1 md:grid-cols-2">
-             <div className="p-12 md:p-24 space-y-16 order-2 md:order-1">
-                <div>
-                   <h3 className="text-4xl mb-8 font-serif italic text-[#804a00]">EXPERIENCE</h3>
-                   <div className="space-y-6 border-l-2 border-[#804a00]/20 pl-6">
-                      <div>
-                         <p className="font-bold tracking-wide text-xl">Independent Artist</p>
-                         <p className="text-sm opacity-60 mb-2 font-mono">2020 - Present</p>
-                         <p className="italic opacity-80">Johannesburg, South Africa</p>
-                      </div>
-                      <div>
-                         <p className="font-bold tracking-wide text-xl">Gallery Curator</p>
-                         <p className="text-sm opacity-60 mb-2 font-mono">2018 - 2020</p>
-                         <p className="italic opacity-80">Maboneng Art District</p>
-                      </div>
-                   </div>
-                </div>
+      <section className="bg-[#f4f3ef] py-20 px-6">
+         <div className="max-w-7xl mx-auto">
+         <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="mb-8"
+         >
+            <h2 className="text-4xl md:text-6xl text-[#2a2422] leading-none">NOKUKHANYA</h2>
+            <span className="font-script text-4xl md:text-6xl text-[#804a00] block -mt-4">Mug</span>
+         </motion.div>
 
-                <div>
-                   <h3 className="text-4xl mb-8 font-serif italic text-[#804a00]">EDUCATION</h3>
-                   <div className="space-y-6 border-l-2 border-[#804a00]/20 pl-6">
-                      <div>
-                         <p className="font-bold tracking-wide text-xl">Bachelor of Fine Arts</p>
-                         <p className="text-sm opacity-60 mb-2 font-mono">2014 - 2018</p>
-                         <p className="italic opacity-80">University of Cape Town</p>
-                      </div>
-                   </div>
-                </div>
-             </div>
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 items-center">
+            <div className="aspect-[16/9] relative group overflow-hidden md:col-span-2">
+            <video
+               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+               src="/videos/1771232485304350.mov"
+               playsInline
+               autoPlay
+               loop
+               controls={false}
+               onLoadedData={(e) => {
+               const v = e.currentTarget as HTMLVideoElement;
+               const observer = new IntersectionObserver(
+                  (entries) => {
+                  entries.forEach((entry) => {
+                     if (entry.isIntersecting) {
+                     v.play().catch(() => {});
+                     } else {
+                     v.pause();
+                     v.currentTime = 0;
+                     }
+                  });
+                  },
+                  { threshold: 0.5 }
+               );
+               observer.observe(v);
+               }}
+               aria-describedby="nokukhanya-desc"
+            />
+            <div className="absolute bottom-0 left-0 p-4">
+               <p className="text-xs tracking-widest uppercase opacity-80">Nokukhanya Mug by Zama Magubane Arts</p>
+            </div>
+            </div>
 
-             <div className="relative min-h-[50vh] overflow-hidden order-1 md:order-2">
-                <div 
-                   className="absolute inset-0 bg-cover bg-center grayscale opacity-80 hover:scale-105 transition-transform duration-1000"
-                   style={{ backgroundImage: `url('/sacred-geometry.png')` }}
-                />
-             </div>
-          </div>
+            <div className="md:col-span-1 text-[#2a2422] text-lg leading-relaxed">
+            <p id="nokukhanya-desc">
+               The Nokukhanya Mug is a limited edition piece from Zama Magubane Arts. Each mug features artwork drawn directly from the studio’s research based practice and embodies the visual language, symbolism, and material sensibility of the artist. This edition translates conceptual art into a functional object while preserving meaning and depth. Nokukhanya is not simply a mug; it is an extension of the studio’s practice and an opportunity to engage with contemporary African art in daily life.
+            </p>
+            </div>
+         </div>
+         </div>
       </section>
 
+      <section className="bg-[#3e322d] text-white py-20 px-6">
+         <div className="max-w-8xl mx-auto">
+         <motion.div
+         initial="hidden"
+         whileInView="visible"
+         viewport={{ once: true }}
+         variants={fadeIn}
+         className="mb-8"
+         >
+         <h2 className="text-4xl md:text-6xl leading-none">POTRENDS</h2>
+         <span className="font-script text-4xl md:text-6xl text-[#d4c5b0] block -mt-4">Collaboration</span>
+         </motion.div>
+
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+         <div className="text-stone-200 text-lg leading-relaxed order-1 md:order-1 md:col-span-1">
+         <p id="potrends-desc">
+         The collaboration with POTRENDS involved the translation of visual language from the Zama Magubane Arts practice into a contemporary garment collection. The project explored how art can move from canvas and conceptual space into wearable form while retaining its cultural grounding and symbolic depth.
+         </p>
+
+         <p className="mt-6">
+         Research for the collaboration focused on material behaviour, pattern placement, and the relationship between body, cloth, and movement. Rather than treating garments as products alone, the process considered clothing as a carrier of narrative, identity, and presence.
+         </p>
+
+         <p className="mt-6">
+         The resulting collection reflects a balance between artistic authorship and functional design, demonstrating how African rooted visual systems can exist within fashion contexts without dilution. The collaboration stands as an example of how cultural practice and commercial execution can operate in alignment.
+         </p>
+         </div>
+
+         <div className="order-2 md:order-2 md:col-span-2 md:col-start-2 relative h-[50vh] md:h-[60vh] group overflow-hidden">
+         <video
+         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+         src="/videos/archive-video-1.mp4"
+         playsInline
+         autoPlay
+         muted
+         loop
+         controls={false}
+         onLoadedData={(e) => {
+         const v = e.currentTarget as HTMLVideoElement;
+         const observer = new IntersectionObserver(
+         (entries) => {
+         entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+            v.play().catch(() => {});
+            } else {
+            v.pause();
+            v.currentTime = 0;
+            }
+         });
+         },
+         { threshold: 0.5 }
+         );
+         observer.observe(v);
+         }}
+         aria-describedby="potrends-desc"
+         />
+         <div className="absolute bottom-0 left-0 p-4">
+         <p className="text-xs tracking-widest uppercase opacity-80">POTRENDS — Collaboration</p>
+         </div>
+         </div>
+         </div>
+         </div>
+      </section>
       {/* SECTION 6: CONTACT */}
-      <section className="bg-[#3e322d] text-white overflow-hidden">
+      <section className="bg-[#f4f3ef] text-[#2a2422] overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-3 min-h-[60vh]">
-             {/* Image */}
-             <div className="relative min-h-[40vh] md:col-span-1 hidden md:block">
-                 <div 
-                   className="absolute inset-0 bg-cover bg-center opacity-80"
-                   style={{ backgroundImage: `url('/threads-of-heritage.png')` }}
-                />
-             </div>
+          {/* Image */}
+          <div className="relative min-h-[40vh] md:col-span-1 hidden md:block">
+           <div 
+          className="absolute inset-0 bg-cover bg-center opacity-80"
+          style={{ backgroundImage: `url('/threads-of-heritage.png')` }}
+          />
+          </div>
 
-             {/* Content */}
-             <div className="md:col-span-2 p-12 md:p-24 flex flex-col justify-center relative">
-                 <motion.div
-                   initial="hidden"
-                   whileInView="visible"
-                   variants={fadeIn}
-                 >
-                    <div className="mb-12 relative w-fit">
-                       <h2 className="text-5xl md:text-7xl leading-none">
-                         GET IN
-                       </h2>
-                       <span className="font-script text-6xl md:text-7xl text-[#d4c5b0] absolute -bottom-8 -right-10 md:-right-20 -rotate-3 block">
-                         Touch
-                       </span>
-                    </div>
+          {/* Content */}
+          <div className="md:col-span-2 p-12 md:p-24 flex flex-col justify-center relative">
+           <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeIn}
+           >
+           <div className="mb-12 relative w-fit">
+              <h2 className="text-5xl md:text-7xl leading-none">
+             GET IN
+              </h2>
+              <span className="font-script text-6xl md:text-7xl text-[#804a00] absolute -bottom-8 -right-10 md:-right-20 -rotate-3 block">
+             Touch
+              </span>
+           </div>
 
-                    <div className="mt-20 space-y-12 text-right md:text-left flex flex-col items-end md:items-start pl-0 md:pl-20 border-l border-white/10">
-                       <div className="text-right md:text-left w-full">
-                          <p className="text-xs tracking-[0.2em] opacity-60 mb-2">EMAIL</p>
-                          <a href="mailto:hello@zamamagubane.com" className="text-xl md:text-3xl hover:text-[#d4c5b0] transition-colors font-light">
-                            hello@zamamagubane.com
-                          </a>
-                       </div>
-                       
-                       <div className="text-right md:text-left w-full">
-                          <p className="text-xs tracking-[0.2em] opacity-60 mb-2">STUDIO</p>
-                          <p className="text-xl md:text-3xl font-light leading-relaxed">
-                            Maboneng Precinct,<br/>
-                            Johannesburg
-                          </p>
-                       </div>
-                    </div>
-                 </motion.div>
-             </div>
+           <div className="mt-20 space-y-12 text-right md:text-left flex flex-col items-end md:items-start pl-0 md:pl-20 border-l border-[#2a2422]/10">
+              <div className="text-right md:text-left w-full">
+              <p className="text-xs tracking-[0.2em] opacity-60 mb-2">EMAIL</p>
+              <a href="mailto:Zamamagubanearts@gmail.com" className="text-xl md:text-3xl hover:text-[#804a00] transition-colors font-light">
+             Zamamagubanearts@gmail.com
+              </a>
+              </div>
+              
+              <div className="text-right md:text-left w-full">
+              <p className="text-xs tracking-[0.2em] opacity-60 mb-2">STUDIO</p>
+              <p className="text-xl md:text-3xl font-light leading-relaxed">
+             Maboneng Precinct,<br/>
+             Johannesburg
+              </p>
+              </div>
+           </div>
+           </motion.div>
+          </div>
           </div>
       </section>
       

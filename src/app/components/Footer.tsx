@@ -23,13 +23,20 @@ export function Footer() {
           <div className="lg:col-span-2">
             <h4 className="font-marketing text-xs tracking-[0.2em] uppercase text-[#804a00] mb-6">Navigation</h4>
             <nav className="flex flex-col gap-3 font-marketing text-sm tracking-widest uppercase text-[#f4f3ef]/60">
-              {['Portfolio', 'Exhibitions', 'Collaborations', 'Shop', 'About'].map((link) => (
+              {[
+                { path: '/licensed-work', label: 'Licensed Work' },
+                { path: '/catalogue', label: 'Catalogue' },
+                { path: '/exhibitions', label: 'Exhibitions' },
+                { path: '/collaborations', label: 'Collaborations' },
+                { path: '/shop', label: 'Shop' },
+                { path: '/about', label: 'About' }
+              ].map((link) => (
                 <Link
-                  key={link}
-                  to={`/${link.toLowerCase()}`}
+                  key={link.path}
+                  to={link.path}
                   className="hover:text-[#f4f3ef] transition-colors w-fit"
                 >
-                  {link}
+                  {link.label}
                 </Link>
               ))}
             </nav>
@@ -40,11 +47,11 @@ export function Footer() {
             <h4 className="font-marketing text-xs tracking-[0.2em] uppercase text-[#804a00] mb-6">Contact</h4>
             <div className="space-y-4 font-body text-[#f4f3ef]/60 text-lg">
               <p>Cape Town, South Africa</p>
-              <a href="mailto:info@zamamagubane.art" className="block hover:text-[#f4f3ef] transition-colors">
-                info@zamamagubane.art
+              <a href="mailto:Zamamagubanearts@gmail.com" className="block hover:text-[#f4f3ef] transition-colors">
+                Zamamagubanearts@gmail.com
               </a>
               <div className="flex gap-4 pt-2">
-                 <a href="https://instagram.com" target="_blank" rel="noreferrer" className="text-[#f4f3ef]/40 hover:text-[#f4f3ef] transition-colors"><Instagram size={20} /></a>
+                 <a href="https://www.instagram.com/uzama.magubane/" target="_blank" rel="noreferrer" className="text-[#f4f3ef]/40 hover:text-[#f4f3ef] transition-colors"><Instagram size={20} /></a>
                  <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-[#f4f3ef]/40 hover:text-[#f4f3ef] transition-colors"><Linkedin size={20} /></a>
               </div>
             </div>

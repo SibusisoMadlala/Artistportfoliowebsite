@@ -1,13 +1,42 @@
 import { motion } from 'motion/react';
-import { ShoppingCart, RotateCcw } from 'lucide-react';
-import { useState } from 'react';
+import { ShoppingCart, RotateCcw, Trash2, Plus, Minus } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 export function Shop() {
-  const [selectedDesign, setSelectedDesign] = useState<number | null>(null);
+  const [selectedDesign, setSelectedDesign] = useState<number | null>(1);
+  const [cartOpen, setCartOpen] = useState(false);
+
+  type CartItem = {
+    id: string; // product id + variant
+    productId: string;
+    title: string;
+    variant?: string;
+    price: number;
+    quantity: number;
+  };
+
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    try {
+      const raw = localStorage.getItem('cart');
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    } catch {}
+  }, [cart]);
+
+  const navigate = useNavigate();
 
   // Design variants
   const designs = [1, 2, 3, 4];
+  const price = 350;
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
@@ -25,67 +54,19 @@ export function Shop() {
           transition={{ duration: 0.8 }}
           className="w-full max-w-md aspect-[4/5] relative bg-[#1c1817] shadow-2xl overflow-hidden"
         >
-           {selectedDesign ? (
-             <div className="relative w-full h-full group">
-               <ImageWithFallback
-                    src={`/images/mug${selectedDesign}.png`} 
-                    alt={`Nokukhanya Mug Design ${selectedDesign}`}
-                    className="w-full h-full object-cover"
-                    fallbackText={`Design ${selectedDesign}`}
-                  />
-                <button 
-                  onClick={() => setSelectedDesign(null)}
-                  className="absolute top-4 right-4 bg-[#f4f3ef] p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:scale-110 shadow-lg"
-                  title="Back to video"
-                >
-                  <RotateCcw className="w-5 h-5 text-[#2a2422]" />
-                </button>
-             </div>
-           ) : (
-              <div className="w-full h-full relative">
-                <video 
-                  autoPlay 
-                  muted 
-                  loop 
-                  playsInline
-                  className="w-full h-full object-cover opacity-90"
-                >
-                  <source src="/videos/mug-rotation.mp4" type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 bg-[#2a2422]/10 pointer-events-none" />
-                
-                {/* Overlay Text only when video is playing */}
-                <div className="absolute bottom-6 left-6 right-6">
-                    <p className="text-[#f4f3ef] text-sm font-marketing tracking-widest uppercase opacity-60">
-                        View 360° Rotation
-                    </p>
-                </div>
-              </div>
-           )}
+            <div className="w-full h-full relative">
+              <video 
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+                className="w-full h-full object-cover opacity-90"
+              >
+                <source src="/videos/archive-video-3.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-[#2a2422]/10 pointer-events-none" />
+            </div>
         </motion.div>
-        
-        {/* Simple Navigation Dials for Visuals */}
-        <div className="mt-8 flex gap-4">
-             {designs.map((num) => (
-                <button
-                    key={num}
-                    onClick={() => setSelectedDesign(num)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        selectedDesign === num 
-                        ? 'bg-[#f4f3ef] scale-125' 
-                        : 'bg-[#f4f3ef]/20 hover:bg-[#f4f3ef]/50'
-                    }`}
-                />
-             ))}
-             <button
-                onClick={() => setSelectedDesign(null)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    selectedDesign === null 
-                    ? 'bg-[#f4f3ef] scale-125' 
-                    : 'bg-[#f4f3ef]/20 hover:bg-[#f4f3ef]/50'
-                }`}
-            />
-        </div>
       </div>
 
       {/* Right Column - Light - Product Details */}
@@ -145,18 +126,89 @@ export function Shop() {
               </div>
 
               {/* Action */}
-              <button className="w-full bg-[#2a2422] text-[#f4f3ef] py-6 px-8 hover:bg-[#804a00] transition-colors duration-300 flex items-center justify-center gap-4 group mt-8">
-                 <span className="text-sm tracking-[0.2em] uppercase">Add to Cart</span>
-                 <ShoppingCart className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              <div className="space-y-6">
+                <button
+                  onClick={() => {
+                    // add to cart
+                    const variant = selectedDesign ?? 1;
+                    const itemId = `mug-${variant}`;
+                    setCart((prev) => {
+                      const found = prev.find((p) => p.id === itemId);
+                      if (found) {
+                        return prev.map((p) => p.id === itemId ? { ...p, quantity: p.quantity + 1 } : p);
+                      }
+                      const newItem: CartItem = {
+                        id: itemId,
+                        productId: 'nokukhanya-mug',
+                        title: `Nokukhanya Mug — Design ${variant}`,
+                        variant: String(variant),
+                        price,
+                        quantity: 1
+                      };
+                      return [...prev, newItem];
+                    });
+                    setCartOpen(true);
+                  }}
+                  className="w-full bg-[#2a2422] text-[#f4f3ef] py-6 px-8 hover:bg-[#804a00] transition-colors duration-300 flex items-center justify-center gap-4 group mt-8"
+                >
+                  <span className="text-sm tracking-[0.2em] uppercase">Add to Cart</span>
+                  <ShoppingCart className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+
+                <p className="text-xs text-[#2a2422]/40 text-center uppercase tracking-widest mt-6">
+                  Limited Stock Available • Secure Checkout
+                </p>
+              </div>
 
               <p className="text-xs text-[#2a2422]/40 text-center uppercase tracking-widest mt-6">
                  Limited Stock Available • Secure Checkout
               </p>
            </div>
         </motion.div>
+
+        {/* Cart Section */}
+        <div className="max-w-xl mx-auto lg:mx-0 mt-12">
+          <div className={`border border-[#2a2422]/10 rounded-lg bg-white p-6 ${cart.length === 0 ? 'opacity-80' : ''}`}>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-medium">Cart</h3>
+              <button onClick={() => { setCart([]); localStorage.removeItem('cart'); }} className="text-sm text-[#2a2422]/60 hover:text-[#2a2422] flex items-center gap-2"><Trash2 className="w-4 h-4" /> Clear</button>
+            </div>
+
+            {cart.length === 0 ? (
+              <div className="text-sm text-[#2a2422]/60">Your cart is empty. Add a mug to begin.</div>
+            ) : (
+              <div className="space-y-4">
+                {cart.map((it) => (
+                  <div key={it.id} className="flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <img src={`/images/mug${it.variant}.png`} alt={it.title} className="w-16 h-16 object-cover rounded" />
+                      <div>
+                        <div className="font-medium text-sm">{it.title}</div>
+                        <div className="text-xs text-[#2a2422]/60">R {it.price.toFixed(2)}</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => setCart((prev) => prev.map(p => p.id === it.id ? { ...p, quantity: Math.max(1, p.quantity - 1) } : p))} className="p-2 bg-[#f4f3ef] rounded"><Minus className="w-4 h-4" /></button>
+                      <div className="w-8 text-center">{it.quantity}</div>
+                      <button onClick={() => setCart((prev) => prev.map(p => p.id === it.id ? { ...p, quantity: p.quantity + 1 } : p))} className="p-2 bg-[#f4f3ef] rounded"><Plus className="w-4 h-4" /></button>
+                      <button onClick={() => setCart((prev) => prev.filter(p => p.id !== it.id))} className="p-2 text-[#c53030] ml-2"><Trash2 className="w-4 h-4" /></button>
+                    </div>
+                  </div>
+                ))}
+
+                <div className="border-t pt-4 flex items-center justify-between">
+                  <div className="text-sm text-[#2a2422]/60">Total</div>
+                  <div className="font-medium">R {cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)}</div>
+                </div>
+
+                <div className="pt-4">
+                  <button onClick={() => navigate('/checkout')} className="w-full bg-[#2a2422] text-[#f4f3ef] py-3 rounded hover:bg-[#804a00] transition-colors">Checkout</button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
-
