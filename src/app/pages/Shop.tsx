@@ -60,9 +60,26 @@ export function Shop() {
                 muted 
                 loop 
                 playsInline
+                crossOrigin="anonymous"
                 className="w-full h-full object-cover opacity-90"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  // Try fallback if primary source fails
+                  if (target.getAttribute('data-fallback') !== 'true') {
+                    target.setAttribute('data-fallback', 'true');
+                    // Fallback to a high-quality stock video from Pixabay (Pottery/Art theme)
+                    target.src = "https://cdn.pixabay.com/video/2020/06/27/43238-435970498_large.mp4"; 
+                    target.load();
+                    target.play().catch(() => {});
+                  }
+                }}
               >
-                <source src="/videos/archive-video-3.mp4" type="video/mp4" />
+                {/* Primary Source: Hosted on Bluehost */}
+                <source src="https://website-afa19dec.jdn.ixm.mybluehost.me/1771232485304350.mov" type="video/quicktime" />
+                <source src="https://website-afa19dec.jdn.ixm.mybluehost.me/1771232485304350.mov" type="video/mp4" />
+                
+                {/* Fallback to local file if fetch fails (rare case) or stock video via onError above */}
+                <source src="/videos/1771232485304350.mov" type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-[#2a2422]/10 pointer-events-none" />
             </div>
